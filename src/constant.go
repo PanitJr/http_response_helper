@@ -20,6 +20,12 @@ const (
 	ResultCodeServiceUnavailable     = 50301
 	ResultCodeGatewayTimeout         = 50400
 
+	GormRecordNotFound       = 151
+	GormInvalidSQL           = 101
+	GormInvalidTransaction   = 178
+	GormCantStartTransaction = 179
+	GormUnaddressable        = 141
+
 	LdapSuccess                     = 0
 	LdapOperationsError             = 1
 	LdapProtocolError               = 2

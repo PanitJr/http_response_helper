@@ -18,9 +18,27 @@ func handlerError(err error) (int, int) {
 		return http.StatusServiceUnavailable, ResultCodeServiceUnavailable
 	case ErrGatewayTimeout:
 		return http.StatusGatewayTimeout, ResultCodeGatewayTimeout
+	case ErrDatabaseError:
+		return http.StatusGatewayTimeout, ResultCodeDatabaseError
+	case ErrConnectionTimeOut:
+		return http.StatusGatewayTimeout, ResultCodeConnectionTimeOut
+	case ErrConnectionError:
+		return http.StatusServiceUnavailable, ResultCodeConnectionError
+	case ErrServerBusy:
+		return http.StatusServiceUnavailable, ResultCodeServerBusy
+	case ErrRecordNotFound:
+		return http.StatusNotFound, GormRecordNotFound
+	case ErrInvalidSQL:
+		return http.StatusInternalServerError, GormInvalidSQL
+	case ErrInvalidTransaction:
+		return http.StatusInternalServerError, GormInvalidTransaction
+	case ErrCantStartTransaction:
+		return http.StatusInternalServerError, GormCantStartTransaction
+	case ErrUnaddressable:
+		return http.StatusInternalServerError, GormUnaddressable
 	case nil:
 		return http.StatusOK, ResultCodeSuccess
 	default:
-		return http.StatusInternalServerError, ResultCodeInternalServerError
+		return http.StatusInternalServerError, ResultCodeUnknowError
 	}
 }
